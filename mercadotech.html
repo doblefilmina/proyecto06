@@ -79,6 +79,45 @@
 		</footer>
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/jquery/jquery.min.js"></script>
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script>
+			let nombre = "iPhone X"
+			let stock = 1000
+			let precio = 499.99
+
+			let unProducto = ["iPad Mini", 500, 1499.99]
+
+			let otroProducto = {
+			nombre : "iPad Pro",
+			stock : 650,
+			precio : 1999.99,
+			}
+
+			console.log(`Hay ${stock} unidades de ${nombre} que valen $${precio}`)
+
+			console.log(`Hay ${unProducto[1]} unidades de ${unProducto[0]} que valen $${unProducto[2]}`)
+
+			console.log(`Hay ${otroProducto.stock} unidades de ${otroProducto.nombre} que valen $${otroProducto.precio}`)
+
+			//CREANDO CONTENIDO EN EL HTML
+			const ficha = document.createElement("article")
+			ficha.classList.add("col-4")
+
+			ficha.innerHTML = `
+					<div class="card h-100">
+						<a href="#">
+							<img class="card-img-top img-fluid" src="http://lorempixel.com/480/320/technics/" alt="">
+						</a>
+						<div class="card-body">
+							<h4 class="card-title"><a href="#">${otroProducto.nombre}</a> <span class="badge badge-pill badge-success float-right">$${otroProducto.precio}</span></h4>
+							<p class="card-text">${otroProducto.stock} unid.</p>
+							<button class="btn btn-primary float-right">Comprar</button>
+						</div>
+					</div> `
+
+			document.querySelector("#productos-destacados").appendChild(ficha)		
+			console.log(ficha)	
+			
+		</script>
 	</body>
 </html>
 
