@@ -31,45 +31,7 @@
 			<h2 class="w-100 my-3 p-3 border">&#x2B50; Productos Destacados</h2>
 			<!-- AREA PRODUCTOS DESTACADOS -->
 			<section id="productos-destacados" class="row py-3">
-				<article class="col-4">
-					<div class="card h-100">
-						<a href="#">
-							<img class="card-img-top img-fluid" src="http://placeimg.com/480/320/tech" alt="">
-						</a>
-						<div class="card-body">
-							<h4 class="card-title"><a href="#">Producto X</a> <span class="badge badge-pill badge-success float-right">$999.99</span></h4>
-							<p class="card-text">9999 unid.</p>
-							<button class="btn btn-primary float-right">Comprar</button>
-						</div>
-					</div>	
-				</article>
-
-				<article class="col-4">
-					<div class="card h-100">
-						<a href="#">
-							<img class="card-img-top img-fluid" src="http://lorempixel.com/480/320/technics/" alt="">
-						</a>
-						<div class="card-body">
-							<h4 class="card-title"><a href="#">Producto X</a> <span class="badge badge-pill badge-success float-right">$999.99</span></h4>
-							<p class="card-text">9999 unid.</p>
-							<button class="btn btn-primary float-right">Comprar</button>
-						</div>
-					</div>	
-				</article>
-
-				<article class="col-4">
-					<div class="card h-100">
-						<a href="#">
-							<img class="card-img-top img-fluid" src="https://picsum.photos/480/320/" alt="">
-						</a>
-						<div class="card-body">
-							<h4 class="card-title"><a href="#">Producto Z</a> <span class="badge badge-pill badge-success float-right">$999.99</span></h4>
-							<p class="card-text">9999 unid.</p>
-							<button class="btn btn-primary float-right">Comprar</button>
-						</div>
-					</div>	
-				</article>
-
+			
 			</section>
 		</main>
 		<footer class="py-5 bg-dark">
@@ -79,48 +41,180 @@
 		</footer>
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/jquery/jquery.min.js"></script>
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="producto.class.js"></script>
 		<script>
-			let nombre = "iPhone X"
-			let stock = 1000
-			let precio = 499.99
 
-			let unProducto = ["iPad Mini", 500, 1499.99]
+			// function Mostrar (producto) { 
+			// window.Mostrar = function(producto) {
+/*
+		const AgregarImagen = function() {
+console.log(this)
+				this.foto = this.nombre.replace(/ /g, "-")
+				this.foto = this.foto.toLowerCase()
+				return this.foto
+		}	
 
-			let otroProducto = {
+		const AgregarFuente = function() {
+			this.fuente = this.nombre.replace(/ /g, "-")
+			this.fuente = this.fuente.toLowerCase()
+			this.fuente = `https://source.unsplash.com/200x200/?${this.fuente}`
+			return this.fuente
+		}
+
+		const Mostrar = function() {
+			console.log("El que ejecuto este metodo es:")
+			console.log(this)	 
+			
+			let ficha = document.createElement("article")
+				ficha.classList.add("col-4")
+
+				ficha.innerHTML = `
+						<div class="card h-100">
+							<a href="#">
+								<img class="card-img-top img-fluid" src="${this.fuente}"  alt="${this.nombre}">
+							</a>
+							<div class="card-body">
+								<h4 class="card-title"><a href="#">${this.nombre}</a> <span class="badge badge-pill badge-success float-right">$${this.precio}</span></h4>
+								<p class="card-text">${this.stock} unid.</p>
+								<button class="btn btn-primary float-right">Comprar</button>
+							</div>
+						</div> `
+
+				document.querySelector("#productos-destacados").appendChild(ficha)		
+				console.log(ficha)	
+			}
+
+*/
+
+
+			//CREANDO CONTENIDO EN EL HTML
+/*
+			let j = 0
+			
+			let producto_0 = {
+			nombre : "iPhone X",
+			stock : 1000,
+			precio : 499.99,
+			Mostrar : Mostrar ,
+			imagen : AgregarImagen ,
+			fuente: AgregarFuente ,
+			}
+			j = j+1
+
+			let producto_1 = {
 			nombre : "iPad Pro",
 			stock : 650,
 			precio : 1999.99,
+			Mostrar : Mostrar ,
+			imagen : AgregarImagen ,
+			fuente: AgregarFuente ,
 			}
+			j = j+1
 
-			console.log(`Hay ${stock} unidades de ${nombre} que valen $${precio}`)
 
-			console.log(`Hay ${unProducto[1]} unidades de ${unProducto[0]} que valen $${unProducto[2]}`)
+			let producto_2 = {
+			nombre : "iPad Mini",
+			stock : 500,
+			precio : 1499.99,
+			Mostrar : Mostrar ,
+			imagen : AgregarImagen ,
+			fuente: AgregarFuente ,
+			}
+			j = j+1
 
-			console.log(`Hay ${otroProducto.stock} unidades de ${otroProducto.nombre} que valen $${otroProducto.precio}`)
+			let producto_3 = {
+			nombre : "Masajes para pies",
+			stock : "2 años",
+			precio : 19999.99,
+			Mostrar : Mostrar ,
+			imagen : AgregarImagen ,
+			fuente: AgregarFuente ,
+			}
+			j = j+1
 
-			//CREANDO CONTENIDO EN EL HTML
-			const ficha = document.createElement("article")
-			ficha.classList.add("col-4")
+			let producto_4 = {
+			nombre : "Petroleo",
+			stock : 10000000,
+			precio : -254.36,
+			Mostrar : Mostrar ,
+			imagen : AgregarImagen ,
+			fuente: AgregarFuente ,
+			}
+			j = j+1
 
-			ficha.innerHTML = `
-					<div class="card h-100">
-						<a href="#">
-							<img class="card-img-top img-fluid" src="http://lorempixel.com/480/320/technics/" alt="">
-						</a>
-						<div class="card-body">
-							<h4 class="card-title"><a href="#">${otroProducto.nombre}</a> <span class="badge badge-pill badge-success float-right">$${otroProducto.precio}</span></h4>
-							<p class="card-text">${otroProducto.stock} unid.</p>
-							<button class="btn btn-primary float-right">Comprar</button>
-						</div>
-					</div> `
+			let productos = [producto_0, producto_1, producto_2, producto_3, producto_4]
 
-			document.querySelector("#productos-destacados").appendChild(ficha)		
-			console.log(ficha)	
-			
+			producto_0.Mostrar()
+			producto_1.Mostrar()
+			producto_2.Mostrar()
+			producto_3.Mostrar()
+			producto_4.Mostrar()
+*/
+
+
+
+/*
+			for (let i = 0 ; i < productos.length; i++) {
+				cargarFoto(i)
+
+			}
+*/
+/*
+			function cargarFoto (i) {
+				productos[i].foto = productos[i].nombre.replace(/ /g, "-")
+				productos[i].foto = productos[i].nombre.toLowerCase()
+			}
+*/
+/*
+			for (let i = 0 ; i < productos.length ; i++) {
+			maquetarCatalogo(i)
+			}
+	
+			function maquetarCatalogo (i) { 
+				let nombreSinEspacios = productos[3].nombre.replace(/ /g,"")
+				let fuente = `https://source.unsplash.com/200x200/?${productos[i].foto}`
+*/					
+
+		// CODIGO ORDENADO
+		
+
+		
+								
+		// 3) defino las funciones que hagan falta
+
+				
+
+				// 4) definición de variables
+				let producto_0 = new Producto("iPhone X", 1000, 499.99, `https://source.unsplash.com/200x200/?iphone-x`)	// instanciación de un objeto "Producto"
+				let producto_1 = new Producto("iPad Pro", 650, 1999.99, `https://source.unsplash.com/200x200/?ipad-pro`)	
+				let producto_2 = new Producto("iPad Mini", 500, 1499.99,`https://source.unsplash.com/200x200/?ipad-mini`)	
+				let producto_3 = new Producto("Masajes para pies", "2 años" , 19999.99, `https://source.unsplash.com/200x200/?masajes-para-pies`)	
+				let producto_4 = new Producto("Petróleo", 1000000, -254.39, `https://source.unsplash.com/200x200/?petroleo`)	
+				
+				let listado = [producto_0 , producto_1 , producto_2 , producto_3 , producto_4 ]
+
+
+				fetch("https://api.npoint.io/6b51ed82842567c3a283").then(function(rta){
+					return rta.json() //convierte los datos de JSON a objetos
+					
+
+				}).then(function(productos){
+					productos.forEach(function({Nombre, Stock, Precio, Imagen, Marca}){
+						let superProducto = new Producto (Nombre, Stock, Precio, Imagen, Marca)
+						superProducto.Mostrar()
+					})
+				})
+
+/*				producto_0.Mostrar()
+				producto_1.Mostrar()
+				producto_2.Mostrar()
+				producto_3.Mostrar()
+				producto_4.Mostrar()
+*/ 
+/*				listado.forEach(function(producto){
+					producto.Mostrar()
+				})
+*/
 		</script>
 	</body>
 </html>
-
-
-
-
