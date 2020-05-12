@@ -1,0 +1,22 @@
+{
+  "name": "mercadotech",
+  "version": "0.0.1",
+  "description": "Plataforma de venta de productos",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doblefilmina/proyecto06.git"
+  },
+  "author": "Federico Brusa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doblefilmina/proyecto06/issues"
+  },
+  "homepage": "https://github.com/doblefilmina/proyecto06#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
