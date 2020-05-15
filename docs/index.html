@@ -195,25 +195,15 @@ console.log(this)
 
 			
 				
-				fetch("https://api.npoint.io/6b51ed82842567c3a283").then(function(rta){
-					return rta.json() //convierte los datos de JSON a objetos
-					
-
-				}).then(function(objetos){
-					
-
-					//Colección de objetos de tipo Producto. SINTAXIS ARROW FUNCTION ESPECIFICA PARA FINCION MAP Y CUANDO SOLO HAY UNA LINEA DE CODIGO RETURN
-					return objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto (Nombre, Stock, Precio, Imagen, Marca) )
-				
-				}).then(function(productos){
-					return productos.filter( producto => producto.precio > 300 )
-					
-				
-				}).then(function(productos){ 
-					productos.forEach( producto => { 
-					producto.Mostrar()
+				fetch("productos.json")
+					.then( rta => rta.json() ) //convierte los datos de JSON a objetos
+					.then( objetos => objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto (Nombre, Stock, Precio, Imagen, Marca) ) )  //Colección de objetos de tipo Producto. SINTAXIS ARROW FUNCTION ESPECIFICA PARA FINCION MAP Y CUANDO SOLO HAY UNA LINEA DE CODIGO RETURN
+					.then( productos => productos.filter( producto => producto.precio > 300 ) )
+					.then( productos => {
+						productos.forEach( producto => { 
+							producto.Mostrar()
+						})
 					})
-				})
 
 /*				producto_0.Mostrar()
 				producto_1.Mostrar()
