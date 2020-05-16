@@ -198,7 +198,7 @@ console.log(this)
 				fetch("productos.json")
 					.then( rta => rta.json() ) //convierte los datos de JSON a objetos
 					.then( objetos => objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto (Nombre, Stock, Precio, Imagen, Marca) ) )  //Colección de objetos de tipo Producto. SINTAXIS ARROW FUNCTION ESPECIFICA PARA FINCION MAP Y CUANDO SOLO HAY UNA LINEA DE CODIGO RETURN
-					.then( productos => productos.filter( producto => producto.precio > 300 ) )
+					.then( productos => productos.filter( producto => producto.precio < 300 ) )
 					.then( productos => {
 						productos.forEach( producto => { 
 							producto.Mostrar()
