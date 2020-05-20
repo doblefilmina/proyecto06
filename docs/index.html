@@ -29,6 +29,11 @@
 		</header>
 		<main class="container">
 			<h2 class="w-100 my-3 p-3 border">&#x2B50; Productos Destacados</h2>
+			<nav id="filtros">
+				<button class="btn btn-secondary" data-min="0" data-max="500">0-500</button>
+				<button class="btn btn-secondary" data-min="500" data-max="1500">500-1500</button>
+				<button class="btn btn-secondary" data-min="1500" data-max="infinite">1500 - +</button>
+			</nav>
 			<!-- AREA PRODUCTOS DESTACADOS -->
 			<section id="productos-destacados" class="row py-3">
 			
@@ -236,6 +241,16 @@ console.log(this)
 //			function aguanta(timeout){
 //			return new Promise ( resolve => setTimeout(resolve, timeout) )
 //			}
+
+			document.querySelectorAll("#filtros button").forEach(filtro =>{
+				filtro.onclick = () => {
+					let rango = {
+						min : evento.target.getAttribute["data-min"]
+						max : evento.target.getAttribute["data-max"]
+					}
+					console.log(rango)
+				}
+			})
 
 			window.onload = async () => {
 
