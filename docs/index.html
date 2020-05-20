@@ -39,6 +39,7 @@
 				<p class="m-0 text-center text-white">¡La mejor manera de comprar online!</p>
 			</div>
 		</footer>
+	
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/jquery/jquery.min.js"></script>
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script src="producto.class.js"></script>
@@ -194,8 +195,8 @@ console.log(this)
 				let listado = [producto_0 , producto_1 , producto_2 , producto_3 , producto_4 ]
 
 			
-				
-				fetch("productos.json")
+/////////////////////// FORMA 1 DE MOSTRAR				
+/*				fetch("productos.json")
 					.then( rta => rta.json() ) //convierte los datos de JSON a objetos
 					.then( objetos => objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto (Nombre, Stock, Precio, Imagen, Marca) ) )  //Colección de objetos de tipo Producto. SINTAXIS ARROW FUNCTION ESPECIFICA PARA FINCION MAP Y CUANDO SOLO HAY UNA LINEA DE CODIGO RETURN
 					.then( productos => productos.filter( producto => producto.precio < 300 ) )
@@ -205,16 +206,58 @@ console.log(this)
 						})
 					})
 
-/*				producto_0.Mostrar()
-				producto_1.Mostrar()
-				producto_2.Mostrar()
-				producto_3.Mostrar()
-				producto_4.Mostrar()
 */ 
-/*				listado.forEach(function(producto){
-					producto.Mostrar()
+
+//////////////////////// FORMA 2. CON FUNCIÓN ASINCRÓNICA (ESPERA QUE TERMINE UN PASO PARA PASAR AL SIGUIENTE. REEMPLAZA AL "THEN")
+				const GET = async url => {
+					let rta = await fetch(url)
+					return await rta.json() // retornar convertido de JSON a Objetos genericos
+					}	
+
+
+///		async function armarCatalogo() {
+//		let rta = await fetch("productos.json")
+//		let objetos = await rta.json()
+
+//		Esta función se pasó a la parte de class 
+//		const armarCatalogo = async () => { 
+//				
+//				let productos = objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto (Nombre, Stock, Precio, Imagen, Marca))
+//				let resultado = productos.filter( producto => producto.precio < 300 )
+
+//				return resultado				
+//			}
+			function aguanta(timeout) {
+				return new Promise(function(resolve, reject){
+					window.setTimeout(resolve, timeout)
 				})
-*/
+			}
+//	SINTAXIS SIMPLIFICADA
+//			function aguanta(timeout){
+//			return new Promise ( resolve => setTimeout(resolve, timeout) )
+//			}
+
+			window.onload = async () => {
+
+				let objetos = await GET("productos.json")
+				let catalogo = await Producto.armarCatalogo(objetos)
+
+				if (catalogo instanceof Array ) {
+				catalogo.forEach( async producto => {
+					producto.Mostrar()
+					await aguanta (3000)
+				})
+				} else {
+				catalogo.Mostrar()
+				}
+
+				
+			
+		}
+	//////FORMA 3
+	
+
+			
 		</script>
 	</body>
 </html>

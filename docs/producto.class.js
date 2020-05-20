@@ -21,9 +21,8 @@ class Producto {
                 this.fuente = `https://source.unsplash.com/200x200/?${this.fuente}`
             }
 
-            Mostrar() {
-                console.log("El que ejecuto este metodo es:")
-                console.log(this)	 
+            Mostrar() { //METODOS DE INSTANCIA (NECESITAS INSTANCIAR EL PRODUCTO)
+	 
                 
                 let ficha = document.createElement("article")
                     ficha.classList.add("col-4")
@@ -44,10 +43,17 @@ class Producto {
                     
                 }	
 
-                Descuento(cupon) {
+                Descuento(cupon) { //METODO DE INSTANCIA 
                     if (cupon == "AUH2020") {
                         this.precio = this.precio * (1-0.15)
                     }
 
-                }		
+                }	
+                
+            static armarCatalogo(objetos){ //METODOS DE CLASE O ESTÁTICOS
+                let productos = objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto (Nombre, Stock, Precio, Imagen, Marca))
+				let resultado = productos.filter( producto => producto.precio < 300 )
+
+				return resultado
             }
+    }
