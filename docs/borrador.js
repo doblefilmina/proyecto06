@@ -41,3 +41,11 @@ let productos = objetos.map(function({Nombre, Stock, Precio, Imagen, Marca}){
 }
 */
 let productos = objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto (Nombre, Stock, Precio, Imagen, Marca) )
+
+// window.sessionStorage & window.localStorage
+
+//localStorage.setItem(NOMBRE, VALOR)
+//localStorage.setItem("usuario", "smessina") //crea o sobrescribe el local storage
+//localStorage.getItem("NOMBRE")  //recupera el valor del nombre
+//localStorage.removeItem("NOMBRE") //elimina los datos nombrados
+//localStorage.clear

@@ -218,8 +218,13 @@ console.log(this)
 					let rta = await fetch(url)
 					return await rta.json() // retornar convertido de JSON a Objetos genericos
 					}	
-
-
+ 
+/*					async function GET(url) {
+						let rta = await fetch(url)
+						let objeto = await rta.json()
+						return(objetos)
+					}
+*/
 ///		async function armarCatalogo() {
 //		let rta = await fetch("productos.json")
 //		let objetos = await rta.json()
@@ -232,6 +237,30 @@ console.log(this)
 
 //				return resultado				
 //			}
+						
+			const mostrarCatalogo = async (rango) => {
+					let objetos = null
+					if ( !localStorage.getItem("CATALOGO")) { //si no hay un localStorage
+						objetos = await GET("productos.json")
+						localStorage.setItem("CATALOGO", JSON.stringify(objetos))
+					} else {									// si sí hay un localStorage
+						objetos = JSON.parse(localStorage.getItem("CATALOGO") )
+					}
+
+					
+					localStorage.setItem("CATALOGO", JSON.stringify(objetos))
+					let catalogo = await Producto.armarCatalogo(objetos, rango)
+
+					if (catalogo instanceof Array ) {
+					catalogo.forEach( async producto => {
+						producto.Mostrar()
+						await aguanta (3000)
+					})
+					} else {
+					catalogo.Mostrar()
+					}
+			}
+
 			function aguanta(timeout) {
 				return new Promise(function(resolve, reject){
 					window.setTimeout(resolve, timeout)
@@ -243,32 +272,32 @@ console.log(this)
 //			}
 
 			document.querySelectorAll("#filtros button").forEach(filtro =>{
-				filtro.onclick = () => {
+				filtro.onclick = evento => {
 					let rango = {
-						min : evento.target.getAttribute["data-min"]
-						max : evento.target.getAttribute["data-max"]
+						min : evento.target.getAttribute("data-min") ,
+						max : evento.target.getAttribute("data-max")
 					}
-					console.log(rango)
+					document.querySelector("#productos-destacados").innerHTML = null
+					mostrarCatalogo(rango)
 				}
 			})
 
-			window.onload = async () => {
-
-				let objetos = await GET("productos.json")
-				let catalogo = await Producto.armarCatalogo(objetos)
-
-				if (catalogo instanceof Array ) {
-				catalogo.forEach( async producto => {
-					producto.Mostrar()
-					await aguanta (3000)
-				})
-				} else {
-				catalogo.Mostrar()
+			mostrarCatalogo()
+			
+/*
+				async funcionAnonima() {
+					let objetos = await GET ("productos.json")
+					let catalogo = await Producto.armarCatalogo(objetos)
+					.
+					.
+					.
 				}
 
+				window.onload = funcionAnonima()
+*/
 				
 			
-		}
+		
 	//////FORMA 3
 	
 
