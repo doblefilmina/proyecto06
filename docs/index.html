@@ -241,10 +241,10 @@ console.log(this)
 			const mostrarCatalogo = async (rango) => {
 					let objetos = null
 					if ( !localStorage.getItem("CATALOGO")) { //si no hay un localStorage
-						objetos = await GET("productos.json")
+						objetos = await GET("productos.json") // lo guarda en el localstorage
 						localStorage.setItem("CATALOGO", JSON.stringify(objetos))
 					} else {									// si sí hay un localStorage
-						objetos = JSON.parse(localStorage.getItem("CATALOGO") )
+						objetos = JSON.parse(localStorage.getItem("CATALOGO") ) //convierte en json el string almacenado en el storage
 					}
 
 					
