@@ -20,8 +20,8 @@
 						<li class="nav-item">
 							<a id="login" class="nav-link" href="#">&#x1F512; Ingresar</a>
 						</li>
-						<li class="nav-item d-none">
-							<a id="logout" class="nav-link" href="#">Bienvenid@ <span>{{USUARIO}}</span> [x]</a>
+						<li class="nav-item">
+							<a id="logout" class="nav-link d-none" href="#">Bienvenid@ <span>{{USUARIO}}</span> [x]</a>
 						</li>
 					</ul>
 				</nav>
@@ -47,8 +47,60 @@
 	
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/jquery/jquery.min.js"></script>
 		<script src="https://blackrockdigital.github.io/startbootstrap-shop-item/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="https://apis.google.com/js/api:client.js"></script>
 		<script src="producto.class.js"></script>
 		<script>
+			//////////////////////////////////////////////////////////////////////
+			gapi.load("auth2", () =>{
+				let credenciales = {
+					client_id: '953666213612-s96k467pj9dngt2kf207c00me46jcmtl.apps.googleusercontent.com',
+					cookiepolicy: 'single_host_origin'
+				}
+				window.auth2 = gapi.auth2.init( credenciales )  //Inicializar con las credenciales asincronicamente..
+				window.auth2.then( () => {						//Chequear si esta logeado luego de inicializar con las credenciales
+
+				if( window.auth2.isSignedIn.get() ){//si ya esta logueado
+					welcome()
+				} else {
+					console.log("NO Estas logeado :(")
+				}
+			})
+		})
+
+			
+
+			//Boton de login
+			document.querySelector("#login").onclick = e =>  { 
+				e.preventDefault()
+
+				window.auth2.signIn().then( welcome )
+				
+			}
+			
+			//Boton de Logout
+			document.querySelector("#logout").onclick = e => {
+				e.preventDefault()
+
+				window.auth2.signOut()
+
+				document.querySelector("#login").classList.remove("d-none")
+				document.querySelector("#logout").classList.add("d-none")
+				document.querySelector("#logout span").innerText = "{{USUARIO}}"
+					
+			}
+
+			//Bienvenida
+			const welcome = () => {
+				
+					window.user = window.auth2.currentUser.get().getBasicProfile()
+
+					document.querySelector("#logout span").innerText = window.user.getName()
+
+					document.querySelector("#login").classList.add("d-none")
+					document.querySelector("#logout").classList.remove("d-none")
+				}
+
+			/////////////////////////////////////////////////////////////////////////////
 
 			// function Mostrar (producto) { 
 			// window.Mostrar = function(producto) {
