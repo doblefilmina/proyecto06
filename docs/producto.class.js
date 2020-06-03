@@ -34,22 +34,27 @@ class Producto {
                                 <div class="card-body">
                                     <h4 class="card-title"><a href="#">${this.nombre}</a> <span class="badge badge-pill badge-success float-right">$${ parseFloat(this.precio).toFixed(2) }</span></h4>
                                     <p class="card-text">${ parseInt(this.stock) } unid.</p>
-                                    <button  class="btn btn-warning btn-editar float-left">Editar</button>
+                                    <button  class="btn btn-warning btn-editar float-left ${ ( auth2 && auth2.isSignedIn.get()) ? "d-block" : "d-none" }">Editar</button>
                                     <button  class="btn btn-primary btn-comprar float-right">Comprar</button>
                                 </div>
-                            </div> `
+                            </div> ` // si existe la variable, y si estoy logueado
                         if (this.estado == false) {                // La interfaz no está anexada al dom
                         document.querySelector("#productos-destacados").appendChild(this.vDOM)
                         this.estado = true
                         }
 
                         this.vDOM.querySelector(".btn-editar").onclick = () => {
+
+                            console.log("Está logueado?")
+                            console.log( auth2.isSignedIn.get() )
+
+                            if( auth2.isSignedIn.get() ) {
                         this.marca = prompt("ingrese nueva marca:", this.marca )
                         this.nombre = prompt("Ingrese nuevo nombre:", this.nombre)
                         this.stock = prompt("ingrese nuevo Stock:", this.stock)
                         this.precio = prompt("ingrese nuevo precio:", this.precio)
                         this.imagen = prompt("ingrese nueva imagen:", this.imagen)
-                        
+                        // Re renderizar la interfaz
                         this.Mostrar()
 
                         //Aca voy a enviar los nuevos datos al servidor
@@ -73,8 +78,12 @@ class Producto {
 
                         fetch("https://webhook.site/6ee394cf-3b0d-4472-8550-52ee64ebd1df", config)
                         console.log(this)
-                    }
 
+                    }else {
+                        alert("Acceso denegado")
+                    }
+                    }
+                
                     		
                     
                 }	
