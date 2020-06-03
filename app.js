@@ -4,6 +4,8 @@ const server = express()
 
 const docs = express.static("docs")
 
+const port = process.env.PORT || 2000
+
 server.use( docs )
 
 
@@ -17,4 +19,4 @@ server.get("/index.html", function(request, response){
 
 // server.post()
 
-server.listen(1000)
+server.listen(port)
