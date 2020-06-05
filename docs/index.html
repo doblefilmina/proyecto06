@@ -38,6 +38,24 @@
 			<section id="productos-destacados" class="row py-3">
 			
 			</section>
+			<!-- FICHA DEL PRODUCTO -->	
+			<section id="producto" class="row py-3 d-none">
+				<div class="col-9">
+					<div class="card">
+						<img id="producto-imagen" class="card-img-top img-fluid" src="{{IMAGEN}}" alt="">
+						<div class="card-body">
+							<h3 class="card-title" id="producto-nombre">{{NOMBRE}}</h3>
+							<h4 id="producto-precio">{{PRECIO}}</h4>
+							<p id="producto-detalle" class="card-text">{{DETALLE}}</p>
+						</div>
+					</div>
+				</div>		
+				<div class="col-3">
+					<button class="btn btn-primary btn-lg btn-block">Confirmar Compra</button>
+				</div>
+			</section>
+
+
 		</main>
 		<footer class="py-5 bg-dark">
 			<div class="container">
@@ -346,7 +364,21 @@ console.log(this)
 			})
 
 			mostrarCatalogo()
+
 			
+			window.onpopstate = () => {
+				const catalogo = document.querySelector("#productos-destacados")
+				const ficha = document.querySelector("#producto")
+
+				if( window.location.pathname == "/") {
+					catalogo.classList.remove("d-none")
+					ficha.classList.add("d-none")
+				} else {
+					catalogo.classList.add("d-none")
+					ficha.classList.remove("d-none")
+				}
+
+			}
 /*
 				async funcionAnonima() {
 					let objetos = await GET ("productos.json")

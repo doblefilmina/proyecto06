@@ -1,7 +1,8 @@
 // 1) los objetos se definen y se organizan en una estructura que se llama "class"	
 class Producto {
     // 2) "constructor" están en el interior de las clases y se configuran: qué propiedades configuran al objeto y qué valor toma esa propiedad.
-                constructor(n, s, p, i, m) {
+                constructor(id, n, s, p, i, m) {
+                    this.id = id
                     this.nombre = n
                     this.stock = s
                     this.precio = p
@@ -35,7 +36,7 @@ class Producto {
                                     <h4 class="card-title"><a href="#">${this.nombre}</a> <span class="badge badge-pill badge-success float-right">$${ parseFloat(this.precio).toFixed(2) }</span></h4>
                                     <p class="card-text">${ parseInt(this.stock) } unid.</p>
                                     <button  class="btn btn-warning btn-editar float-left ${ ( auth2 && auth2.isSignedIn.get()) ? "d-block" : "d-none" }">Editar</button>
-                                    <button  class="btn btn-primary btn-comprar float-right">Comprar</button>
+                                    <button  class="btn btn-primary btn-ver float-right">ver +</button>
                                 </div>
                             </div> ` // si existe la variable, y si estoy logueado
                         if (this.estado == false) {                // La interfaz no está anexada al dom
@@ -83,10 +84,36 @@ class Producto {
                         alert("Acceso denegado")
                     }
                     }
-                
+
+                    this.vDOM.querySelector(".btn-ver").onclick = () => {
+                        
+                       const path = (`/MT-${this.id}-${this.nombre.split(" ").join("-")}`).toLowerCase()
+
+                       console.log(path)
+
+                       
+                       
+                        
+
+
+                        const HTML = document.querySelector("#producto")
+
+                        HTML.querySelector("#producto-imagen").src = this.imagen
+                        HTML.querySelector("#producto-nombre").innerText = this.nombre
+                        HTML.querySelector("#producto-precio").innerText = "$" + this.precio
+                        HTML.querySelector("#producto-detalle").innerText = "Lorem ipsum dolor sit amet..."
+                        HTML.classList.remove("d-none")
+
+                        document.querySelector("#productos-destacados").classList.add("d-none")
+                       
+                        window.history.pushState({}, path, window.location.origin + path)
+                    
+                    }
                     		
                     
                 }	
+
+
 
                 Descuento(cupon) { //METODO DE INSTANCIA 
                     if (cupon == "AUH2020") {
@@ -96,10 +123,11 @@ class Producto {
                 }	
                 
             static armarCatalogo(objetos, rango){ //METODOS DE CLASE O ESTÁTICOS
-                let productos = objetos.map( ({Nombre, Stock, Precio, Imagen, Marca}) => new Producto (Nombre, Stock, Precio, Imagen, Marca))
+                let productos = objetos.map( ({idProducto, Nombre, Stock, Precio, Imagen, Marca}) => new Producto (idProducto, Nombre, Stock, Precio, Imagen, Marca))
 				let resultado = ( rango ) ? productos.filter( producto => producto.precio < rango.max && producto.precio > rango.min ) : productos
                 //si se cumple "rango" (en este caso si existe "rango") hacer lo primero, si no hace lo otro
 				return resultado
             }
         }
+
                 
