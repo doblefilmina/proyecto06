@@ -16,7 +16,7 @@ const Mostrar = function(){
 } 
 =
 */
-const Mostrar = () => {
+const Mostrar = () => { 
 
 }
 
